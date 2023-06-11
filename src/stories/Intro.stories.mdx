@@ -1,0 +1,117 @@
+import { Meta } from "@storybook/addon-docs";
+
+<Meta title="Documentation/Intro" />
+
+<div align="center">
+  <strong>Conflux Wallet Connect UI for React.</strong>
+</div>
+<div align="center">
+  {" "}
+  Easily integrate your dApps on Conflux eSpace (EVM) with Fluent, Metamask, and
+  OKX wallets.
+</div>
+
+<div align="center">
+  <sub>
+    Created by <a href="https://github.com/Charlie85270">Charlie Rabiller</a> 👨‍🍳
+  </sub>
+</div>
+
+## Features
+
+- 🔥 **Easy to use hook and pre-styled Button and Modal components to connect Metamask, Fluent and OKX wallets to your dApps**
+- 🔩 **Easily Customizable, plug your own components**
+- ⏳ **Unified API for Metamask, Fluent and OKX wallets, same functions for all providers** - Possibility to trigger functions from specific providers if needed)
+- 🕊 **Lightweight** - _less than 5kb including styles_
+- ✅ **Light and Dark mode supported**
+
+## Installation
+
+#### With yarn
+
+```sh
+yarn add conflux-wallet-connect
+```
+
+#### With NPM
+
+```sh
+npm install conflux-wallet-connect
+```
+
+## Getting Started
+
+First, wrap your App with the ConfluxWalletProvider and import the CSS. It will take care of rendering the connect modal, components, manage the wallets and give you access to all functions to interact with them.
+
+```jsx
+import {
+  ConfluxWalletProvider,
+  ConfluxWalletProviderConfiguration,
+} from "conflux-wallet-connect";
+import "...myCSStoUpdate.css";
+
+const App = () => {
+  const configuration: ConfluxWalletProviderConfiguration = {
+    theme : "light" // or "dark"
+    chainId: 1030 // or 71 for Conflux EVM testnet,
+    providers: ["fluent", "metamask", "okx"],
+  };
+
+  return (
+    <ConfluxWalletProvider configuration={configuration}>
+      <p>My App</p>
+    </ConfluxWalletProvider>
+  );
+};
+```
+
+## Button / Modal components to connect user wallets
+
+After wrapping your application with the ConfluxWalletProvider as shown previously, you can use the `<ConfluxWalletButton />` on your app.
+This is a pre-styled and interactive button that allow user to connect to your dApps with OKX, Metamask or fluent wallet.
+
+More details and playground [here](?path=/docs/components-walletbutton--docs) :
+
+```jsx
+import { ConfluxWalletButton } from "conflux-wallet-connect";
+
+const MyComponent = () => {
+  const { openModal } = useConfluxWalletContext();
+
+  return <ConfluxWalletButton onClick={openModal} />;
+};
+```
+
+<i>The wallet connect modal </i>
+<img src="https://i.postimg.cc/1X1Dz9G8/Capture-d-e-cran-2023-06-10-a-10-01-13.png" />
+
+The button trigged the connect modal, a pre-styled modal to connect all compatible providers (OKX, Metamask, Fluent) to your dApps.
+You can open and close this modal anywhere in your app at any moment with the `openModal`and `closeModale` functions from `useConfluxWalletContext` hook.
+The modal allow users to connect wallets and change the active one.
+More details and playground [here](?path=/docs/components-walletbutton--docs) :
+
+## useConfluxWalletContext Hook
+
+After wrapping your application with the ConfluxWalletProvider as shown previously, you can use the hook `useConfluxWalletContext` from anywhere in your application and allow you to interact with the **active** user wallet.
+
+```jsx
+import {
+  useConfluxWalletContext,
+} from "conflux-wallet-connect";
+
+
+const MyComponent = () => {
+
+ const { wallet } = useConfluxWalletContext();
+ const { account, balance, chainId } = wallet;
+  return (
+    <p>
+      The balance of the account {account} on {chainId} is {balance} ...
+    <p>
+  );
+};
+```
+
+You can find more details and documentation about the `useConfluxWalletContext` hook [here](?path=/docs/hooks-useconfluxwalletcontext--docs#useconfluxwalletcontext-hook).
+
+And that's it ! You're ready to integrate and use OKX, Metamask and fluent wallet on your dApp ! 🔥

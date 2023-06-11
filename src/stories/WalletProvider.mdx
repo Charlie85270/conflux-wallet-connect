@@ -1,0 +1,392 @@
+import { Meta, Props } from "@storybook/addon-docs";
+
+<Meta title="Tools/wallet providers" />
+
+## Wallets providers
+
+As seen before on the [useConfluxWalletContext documentation](http://localhost:6006/?path=/docs/tools-useconfluxwalletcontext-hook--docs), in some case you might need to trigger functions or get data from other providers than the one **active**.
+For that, you'll need to use the specific provider API exposed on the module.
+
+## How to use
+
+After wrapping your application with the ConfluxWalletProvider as shown on the [introduction page](?path=/docs/documentation-intro--docs#getting-started), you can import the different providers from anywhere in your application.
+
+```jsx
+import {
+   MetamaskProvider,
+   FluentProvider,
+   OKXProvider
+} from "conflux-wallet-connect";
+
+
+const MyComponent = () => {
+
+ // Do what you want
+
+ // Get the Metamask extension status (active, not-installed, ...)
+ const status = MetamaskProvider.useStatus();
+ // Get the adress of the connect account on metamask
+ const account = MetamaskProvider.useAccount();
+
+ // Get the Fluent extension status (active, not-installed, ...)
+ const fluentStatus = FluentProvider.useStatus();
+
+ // Get the OKW extension status (active, not-installed, ...)
+ const okxStatus = OKXProvider.useStatus();
+
+ ...
+
+
+  return (
+    <p>
+     Hello
+    <p>
+  );
+};
+```
+
+## Description of provider attributs and methods
+
+        <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Type</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>useStatus</td>
+            <td>Hook to get status of the wallet</td>
+            <td>
+
+              <code>"in-detecting"</code> | <code>"not-installed"</code> | <code>
+                "not-active"
+              </code> |<code>"in-activating"</code> | <code>"active"</code> | <code>"chain-error"</code>
+            </td>
+          </tr>
+          <tr>
+            <td>useAccount</td>
+            <td>Hook to get the adress of the acount connected on the wallet</td>
+            <td>
+              <code>string | undefined</code>
+            </td>
+          </tr>
+          <tr>
+            <td>useChainId</td>
+            <td>Hook to get the active chainId on the wallet</td>
+            <td>
+              <code>string | undefined</code>
+            </td>
+          </tr>
+          <tr>
+            <td>useBalance</td>
+            <td>Hook to get the balance of the current active wallet</td>
+            <td>
+              <code><a href="/?path=/docs/hooks-useconfluxwalletcontext--docs#Unit"> Unit</a></code>
+            </td>
+          </tr>
+          <tr>
+            <td>connect</td>
+            <td> - </td>
+            <td> <code><a href="/?path=/docs/hooks-useconfluxwalletcontext--docs#connect"> See below</a></code></td>
+          </tr>
+       <tr>
+            <td>addChain</td>
+            <td> - </td>
+            <td> <code><a href="/?path=/docs/hooks-useconfluxwalletcontext--docs#addChain"> See below</a></code></td>
+          </tr>
+
+ <tr>
+            <td>completeDetect</td>
+            <td> - </td>
+            <td> <code><a href="/?path=/docs/hooks-useconfluxwalletcontext--docs#addChain"> See below</a></code></td>
+          </tr>
+           <tr>
+            <td>personalSign</td>
+            <td> - </td>
+            <td> <code><a href="/?path=/docs/hooks-useconfluxwalletcontext--docs#addChain"> See below</a></code></td>
+          </tr>
+           <tr>
+            <td>requestCrossNetworkPermission</td>
+            <td> - </td>
+            <td> <code><a href="/?path=/docs/hooks-useconfluxwalletcontext--docs#addChain"> See below</a></code></td>
+          </tr>
+           <tr>
+            <td>sendTransaction</td>
+            <td> - </td>
+            <td> <code><a href="/?path=/docs/hooks-useconfluxwalletcontext--docs#sendTransaction"> See below</a></code></td>
+          </tr>
+           <tr>
+            <td>switchChain</td>
+            <td> - </td>
+            <td> <code><a href="/?path=/docs/hooks-useconfluxwalletcontext--docs#switchChain"> See below</a></code></td>
+          </tr>
+             <tr>
+            <td>trackBalanceChangeOnce</td>
+            <td> - </td>
+            <td> <code><a href="/?path=/docs/hooks-useconfluxwalletcontext--docs#trackBalanceChangeOnce"> See below</a></code></td>
+          </tr>
+             <tr>
+            <td>watchAsset</td>
+            <td> - </td>
+            <td> <code><a href="/?path=/docs/hooks-useconfluxwalletcontext--docs#watchAsset"> See below</a></code></td>
+          </tr>
+             <tr>
+            <td>setCrossNetworkChain</td>
+            <td> - </td>
+            <td> <code><a href="/?path=/docs/hooks-useconfluxwalletcontext--docs#setCrossNetworkChain"> See below</a></code></td>
+          </tr>
+           <tr>
+            <td>provider</td>
+            <td> - </td>
+            <td> <code><a href="/?path=/docs/hooks-useconfluxwalletcontext--docs#provider"> See below</a></code></td>
+          </tr>
+          </tbody>
+</table>
+
+## Details of functions
+
+# connect
+
+```js
+
+declare const connect: () => Promise<void>;
+
+```
+
+### Description:
+
+The connect function return a Promise. when the status is 'not-active', calling connect brings up the wallet's authorization popup and the status changes to 'in-activating'.
+
+After agreeing to the authorization, the status will change to 'active' and the return value in hooks such as useAccount will change from undefined to the corresponding value of the current account, and the returned Promise will resolve.
+
+If the authorization is denied, or if connect is called when status is not 'not-active', Promise will be rejected; if it is called when status is already 'active', Promise will be resolved.
+
+You should only allow users to call connect when the status is 'not-active' by clicking on the button.
+
+# sendTransaction
+
+```js
+
+declare const sendTransaction: ({ from, to, value, data }: {
+    to: string;
+    value?: string;
+    data?: string | undefined;
+}) => Promise<string>;
+
+```
+
+### Description:
+
+The sendTransaction function return a Promise. calling sendTransaction when the status is 'active' will raise the wallet to issue a transaction based on the input parameters. If it is not called when 'active', Promise will be rejected.
+
+Unlike transactions initiated via RPC, sendTransaction only requires three parameters: to, value, and data (if any), and the from parameter is built into the current account.
+
+The value should be a hexadecimal string starting with '0x', indicating the smallest unit of the corresponding currency ('drip' in conflux | 'wei' in ethereum). 'Undefined' value is equivalent to filling in '0x0'.
+
+A successful transaction will resolve hash-string, a failed transaction will reject.
+
+# addChain
+
+```js
+
+interface AddChainParameter {
+    chainId: string; // A 0x-prefixed hexadecimal string
+    chainName: string;
+    nativeCurrency: {
+        name: string;
+        symbol: string; // 2-6 characters long
+        decimals: number;
+    };
+    rpcUrls: string[];
+    blockExplorerUrls?: string[];
+    iconUrls?: string[]; // Currently ignored.
+}
+
+declare const addChain: (param: AddChainParameter) => Promise<null>;
+
+```
+
+### Description:
+
+The addChain function return a Promise.calling addChain when the status is 'active' will invoke a wallet confirmation. If it is not called when 'active', the Promise will simply reject.
+
+A successful add will resolve null, a failed add will reject.
+
+# switchChain
+
+```js
+
+declare const switchChain: const switchChain: (chainId: string) => Promise<null>;
+
+```
+
+### Description:
+
+The switchChain function return a Promise.calling switchChain when the status is 'active' will invoke a wallet confirmation. If it is not called when 'active', the Promise will simply reject.
+
+A successful switch will resolve null, a failed switch will reject.
+
+# watchAsset
+
+```js
+
+interface WatchAssetParams {
+    type: 'ERC20'; // In the future, other standards will be supported
+    options: {
+        address: string; // The address of the token contract
+        symbol: string; // A ticker symbol or shorthand, up to 5 characters
+        decimals: number; // The number of token decimals
+        image: string; // A string url of the token logo
+    };
+}
+
+declare const watchAsset: (param: WatchAssetParams) => Promise<boolean>;
+
+```
+
+### Description:
+
+The watchAsset function return a Promise.calling watchAsset when the status is 'active' will invoke a wallet confirmation. If it is not called when 'active', the Promise will simply reject.
+
+A successful add will resolve true, a failed add may resolve false or reject.The behavior depends on the wallet.
+
+# personalSign
+
+```js
+
+declare const personalSign: (message: string) => Promise<string>;
+
+```
+
+### Description:
+
+The personalSign function return a Promise.calling personalSign when the status is 'active' will invoke a wallet confirmation. If it is not called when 'active', the Promise will simply reject.
+
+A successful sign will resolve hash-string, a failed sign will reject.
+
+# typedSign
+
+```js
+
+declare const typedSign: (typedData: Record<string, any>) => Promise<string>;
+
+```
+
+### Description:
+
+The typedSign function return a Promise.calling typedSign when the status is 'active' will invoke a wallet confirmation. If it is not called when 'active', the Promise will simply reject.
+
+A successful sign will resolve hash-string, a failed sign will reject.
+
+# Unit
+
+```js
+
+declare class Unit {
+    private value: Decimal;
+    constructor(value: Decimal);
+    equalsWith: (another: Unit) => boolean;
+    toDecimalStandardUnit: (toFixed?: number | undefined, decimals: number = 18) => string;
+    toHexStandardUnit: (decimals: number = 18) => string;
+    toDecimalMinUnit: () => string;
+    toHexMinUnit: () => string;
+    static fromStandardUnit: (value: string | number, decimals: number = 18) => Unit;
+    static fromMinUnit: (value: string | number) => Unit;
+    static equals: (a: Unit, b: Unit) => boolean;
+    static lessThan: (a: Unit, b: Unit) => boolean;
+    static greaterThan: (a: Unit, b: Unit) => boolean;
+    static lessThanOrEqualTo: (a: Unit, b: Unit) => boolean;
+    static greaterThanOrEqualTo: (a: Unit, b: Unit) => boolean;
+    static add: (a: Unit, b: Unit) => Unit;
+    static sub: (a: Unit, b: Unit) => Unit;
+    static mul: (a: Unit, b: Unit) => Unit;
+    static div: (a: Unit, b: Unit) => Unit;
+    equals: (another: Unit) => boolean;
+    lessThan: (another: Unit) => boolean;
+    greaterThan: (another: Unit) => boolean;
+    lessThanOrEqualTo: (another: Unit) => boolean;
+    greaterThanOrEqualTo: (another: Unit) => boolean;
+    add: (another: Unit) => Unit;
+    sub: (another: Unit) => Unit;
+    mul: (another: Unit) => Unit;
+    div: (another: Unit) => Unit;
+    [Symbol.toPrimitive](hint: 'string' | 'number' | 'default'): string | Decimal;
+}
+
+```
+
+### Description:
+
+The balance type returned by useBalance is Unit, which is used to facilitate the development of Dapp to handle the problem of inconsistency between the balance displayed to the user and the balance unit required for issuing a transaction in a uniform manner.
+
+The instance of Unit has a private member variable of value, meaning the smallest unit of the corresponding currency ('drip' in conflux | 'wei' in ethereum). It uses the library 'decimal.js' to perform calculations with sufficient precision.
+
+You should use the Unit's static methods to get/calculate the value of the currency. Use the Unit's instance methods to display the value of the currency in the user interface.
+
+MinUnit refers to 'drip' | 'wei', StandardUnit refers to 'cfx' | 'eth'. fromStandardUnit/MinUnit supports both hexadecimal strings starting with '0x' and decimal strings.
+
+# watchAsset
+
+```js
+
+interface WatchAssetParams {
+    type: 'ERC20'; // In the future, other standards will be supported
+    options: {
+        address: string; // The address of the token contract
+        symbol: string; // A ticker symbol or shorthand, up to 5 characters
+        decimals: number; // The number of token decimals
+        image: string; // A string url of the token logo
+    };
+}
+
+declare const watchAsset: (param: WatchAssetParams) => Promise<boolean>;
+
+```
+
+### Description:
+
+The watchAsset function return a Promise.calling watchAsset when the status is 'active' will invoke a wallet confirmation. If it is not called when 'active', the Promise will simply reject.
+
+A successful add will resolve true, a failed add may resolve false or reject.The behavior depends on the wallet.
+
+# trackBalanceChangeOnce
+
+```js
+declare const trackBalanceChangeOnce: (callback: () => void) => void;
+
+```
+
+### Description:
+
+The trackBalanceChangeOnce function tracks the change in the current account balance once.
+
+This tool function can be used to simply and inexactly track whether a transaction has been on-chain or not.
+
+# provider
+
+```js
+declare const provider: Provider | undefined;
+
+```
+
+### Description:
+
+The trackBalanceChangeOnce function tracks the change in the current account balance once.
+
+This tool function can be used to simply and inexactly track whether a transaction has been on-chain or not.
+
+# completeDetect
+
+```js
+declare const completeDetect: () => Promise<void>;
+
+```
+
+### Description:
+
+The 'provider' can be imported directly from use-wallet to use.It is the (conflux | ethereum) object in window. The difference is that it has a typescript declaration.
+
+Note that the value of the imported provider object is undefined until the detect process is completed.
