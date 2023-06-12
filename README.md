@@ -1,19 +1,12 @@
-<a href="https://react-hot-toast.com/"><img alt="ConfluxWalletConnect" src="https://i.im.ge/2023/06/10/FMgm54.png"/></a>
 
-<div align="center">
-    <img src="https://badgen.net/npm/v/react-hot-toast" alt="NPM Version" />
-  <img src="https://badgen.net/bundlephobia/minzip/react-hot-toast" alt="minzipped size"/>
-    <img src="https://github.com/timolins/react-hot-toast/workflows/CI/badge.svg" alt="Build Status" />
-</a>
-</div>
+<img src="https://cryptocdn.fra1.cdn.digitaloceanspaces.com/sites/8/Screenshot-2022-04-28-10.57.38.png" />
 <br />
-<div align="center"><strong>Conflux Wallet Connect UI for React.</strong></div>
-<div align="center"> Easily integrate your dApps on Conflux eSpace with Fluent, Metamask, and OKX wallets.</div>
+<div align="center"><strong>Conflux Wallet Connect for React</strong></div>
+<div align="center">Easily integrate your react applications on the Conflux eSpace with Fluent, Metamask, and OKX wallets.</div>
 <br />
 <div align="center">
-<a href="https://react-hot-toast.com/">Website</a> 
-<span> · </span>
-<a href="https://react-hot-toast.com/docs">Documentation</a>
+
+<a href="https://conflux-wallet-connect.netlify.app">Website / Documentation</a>
 
 </div>
 
@@ -29,7 +22,6 @@
 - 🔥 **Pre-styled and ready to use Button and Modal components to connect wallets to your dApps**
 - 🔩 **Easily Customizable, plug your own components**
 - ⏳ **Unified API for Metamask, Fluent and OKX wallets**
-- 🕊 **Lightweight** - _less than 5kb including styles_
 - ✅ **Light and Dark mode supported**
 
 ## Installation
@@ -78,4 +70,4 @@ Supported chains : **1030** (Conflux EVM mainnet) / 71 (Conflux EVM testnet
 
 ## Documentation
 
-Find the full API reference on [official documentation](https://react-hot-toast.com/docs).
+Find the full API references and playground on [Storybook](https://conflux-wallet-connect.netlify.app/)
