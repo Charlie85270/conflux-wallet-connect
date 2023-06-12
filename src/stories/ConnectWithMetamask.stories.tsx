@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 
 import { ConfluxWalletProvider, MetamaskProvider } from "../index";
 import { Toastify } from "../index";
 
 const meta = {
-  title: "Exemples/How to creare a 'Connect with Metamask' button",
+  title: "Exemples/How to create a 'Connect with Metamask' button",
   tags: ["autodocs"],
   parameters: {
     componentSubtitle:

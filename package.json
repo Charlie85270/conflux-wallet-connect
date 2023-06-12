@@ -1,6 +1,6 @@
 {
   "name": "conflux-wallet-connect",
-  "version": "0.0.1",
+  "version": "0.0.8",
   "description": "Open-source user interface (UI) component that can be easily integrated into the user interfaces of various Conflux eSpace projects, allowing them to support all eSpace wallets including Fluent, Metamask, and OKX.",
   "main": "lib/index.js",
   "module": "lib/index.esm.js",
@@ -9,7 +9,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "build": "rollup -c",
+    "build": "rollup -c --bundleConfigAsCjs",
     "prepublishOnly": "yarn build"
   },
   "np": {

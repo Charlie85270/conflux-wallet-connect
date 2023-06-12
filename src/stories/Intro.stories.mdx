@@ -2,16 +2,14 @@ import { Meta } from "@storybook/addon-docs";
 
 <Meta title="Documentation/Intro" />
 
-<div align="center">
-  <strong>Conflux Wallet Connect UI for React.</strong>
-</div>
-<div align="center">
-  {" "}
+# Conflux Wallet Connect UI for React
+
+<div>
   Easily integrate your dApps on Conflux eSpace (EVM) with Fluent, Metamask, and
   OKX wallets.
 </div>
 
-<div align="center">
+<div>
   <sub>
     Created by <a href="https://github.com/Charlie85270">Charlie Rabiller</a> 👨‍🍳
   </sub>
@@ -41,19 +39,19 @@ npm install conflux-wallet-connect
 
 ## Getting Started
 
-First, wrap your App with the ConfluxWalletProvider and import the CSS. It will take care of rendering the connect modal, components, manage the wallets and give you access to all functions to interact with them.
+First, wrap your App with the ConfluxWalletProvider and import the CSS file. It will take care of rendering the connect modal, components, manage the wallets and give you access to all functions to interact with them.
 
 ```jsx
 import {
   ConfluxWalletProvider,
   ConfluxWalletProviderConfiguration,
 } from "conflux-wallet-connect";
-import "...myCSStoUpdate.css";
+import "conflux-wallet-connect/lib/conflux-wallet-connect.css";
 
 const App = () => {
   const configuration: ConfluxWalletProviderConfiguration = {
-    theme : "light" // or "dark"
-    chainId: 1030 // or 71 for Conflux EVM testnet,
+    theme: "light", // or "dark"
+    chainId: 1030, // or 71 for Conflux EVM testnet,
     providers: ["fluent", "metamask", "okx"],
   };
 

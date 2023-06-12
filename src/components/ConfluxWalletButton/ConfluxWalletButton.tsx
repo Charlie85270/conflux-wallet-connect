@@ -47,7 +47,7 @@ const ConfluxWalletButton: React.FC<ConfluxWalletButtonProps> = ({
       onClick={openModal}
       disabled={disabled}
       className={classNames(
-        `flex space-x-2 items-center justify-center w-full px-4 py-2 text-centertransition duration-200 ease-in border rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2`,
+        `flex space-x-2 items-center w-max justify-center px-4 py-2 text-centertransition duration-200 ease-in border rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2`,
         {
           "text-lg": size === "large",
           "text-md": size === "medium",

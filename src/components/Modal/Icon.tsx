@@ -11,7 +11,7 @@ export const MetamaskIcon = ({ className }: { className?: string }) => {
       id="metamask"
       className={classNames(className, "w-20 h-20")}
     >
-      <g fill="none" fill-rule="evenodd">
+      <g fill="none" fillRule="evenodd">
         <polygon
           fill="#CDBDB2"
           points="60.75 173.25 88.313 180.563 88.313 171 90.563 168.75 106.313 168.75 106.313 180 106.313 187.875 89.438 187.875 68.625 178.875"
@@ -203,16 +203,16 @@ export const FluentIcon = ({ className }: { className?: string }) => {
       fill="none"
     >
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M37.696 0H48v7.722C48 16.867 40.74 24 31.795 24H24v-7.945C24 7.952 29.933 1.234 37.696 0z"
         fill="#242265"
-        fill-opacity=".8"
+        fillOpacity=".8"
       />
       <path
         d="M48 0v7.722c0 8.89-7.14 16.112-16.002 16.255l-.269.003H24v7.742C24 40.867 16.74 48 7.795 48H0v-7.952V22.76C0 10.19 10.2 0 22.78 0H48z"
         fill="#616EE1"
-        fill-opacity=".8"
+        fillOpacity=".8"
       />
     </svg>
   );

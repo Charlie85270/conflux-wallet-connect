@@ -4,7 +4,7 @@ import { ConfluxWalletProvider, FluentProvider } from "../index";
 import { Toastify } from "../index";
 
 const meta = {
-  title: "Exemples/How to creare a 'Connect with fluent' button",
+  title: "Exemples/How to create a 'Connect with fluent' button",
   tags: ["autodocs"],
   parameters: {
     componentSubtitle:

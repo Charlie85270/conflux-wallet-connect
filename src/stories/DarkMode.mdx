@@ -1,0 +1,41 @@
+import { Meta, Props } from "@storybook/addon-docs";
+
+<Meta title="Tools/Dark mode" />
+
+## Light/Dark mode
+
+The `<ModalConnect />` and `<ConfluxWalletButton />` have light and dark versions.
+
+## How to use
+
+As seen on the isntallation page, to use hooks and pre-styled components on your app you need to wrap your code with the `ConfluxWalletProvider` .
+To enabled light/dark mode on components, simply pass your current theme ('dark' or 'light') to the `<ConfluxWalletProvider />`
+
+Ex : In this exemple `MyExempleThemeProvider` and `useMyExempleTheme` are exemples, but it works the same way for all theme providers (next-theme, mui-theme, tailwind, ..)
+
+```jsx
+import {
+  ConfluxWalletProvider,
+  ConfluxWalletProviderConfiguration,
+} from "conflux-wallet-connect";
+import "conflux-wallet-connect/lib/conflux-wallet-connect.css";
+
+const App = () => {
+  const theme = useMyExempleTheme();
+  const configuration: ConfluxWalletProviderConfiguration = {
+    theme,
+    chainId: 1030, // or 71 for Conflux EVM testnet,
+    providers: ["fluent", "metamask", "okx"],
+  };
+
+  return (
+    <MyExempleThemeProvider>
+      <ConfluxWalletProvider configuration={configuration}>
+        <p>My App</p>
+      </ConfluxWalletProvider>
+    </MyThemeProvider>
+  );
+};
+```
+
+Theme of the components will automatically change when you will switch to light or dark mode on your app.

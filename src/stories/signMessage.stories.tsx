@@ -1,11 +1,11 @@
 import React, { useCallback } from "react";
 
 import ConfluxWalletProvider from "../ConfluxWalletProvider";
-import { Toastify, Unit } from "../index";
+import { Toastify } from "../index";
 import { useConfluxWalletContext } from "../hook";
 
 const meta = {
-  title: "Exemples/Sign a message",
+  title: "Exemples/How to sign a message",
   tags: ["autodocs"],
   parameters: {
     componentSubtitle:
@@ -43,7 +43,7 @@ const MySignMessageButtonComp = () => {
     }, [account]);
     return (
       <button
-        className="border px-2 py-1 rounded"
+        className="px-2 py-1 border rounded"
         onClick={handleSign}
         type="button"
       >
@@ -82,7 +82,7 @@ export const Primary = {
     }, [account]);
     return (
       <button
-        className="border px-2 py-1 rounded"
+        className="px-2 py-1 border rounded"
         onClick={handleSign}
         type="button"
       >

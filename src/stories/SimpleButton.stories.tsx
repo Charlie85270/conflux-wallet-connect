@@ -5,7 +5,7 @@ import ConfluxWalletProvider from "../ConfluxWalletProvider";
 import { useConfluxWalletContext } from "../hook";
 
 const meta = {
-  title: "Exemples/Open the modal with your own button",
+  title: "Exemples/How to open the modal connect with your own button",
   tags: ["autodocs"],
   parameters: {
     componentSubtitle:
@@ -33,7 +33,7 @@ export const Primary = {
     const { openModal } = useConfluxWalletContext();
     return (
       <button
-        className="border px-2 py-1 rounded"
+        className="px-2 py-1 border rounded"
         onClick={openModal}
         type="button"
       >

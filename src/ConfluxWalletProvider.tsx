@@ -197,6 +197,18 @@ const ConfluxWalletProvider: FC<ConfluxWalletProviderProps> = ({
   }, [activeProvider, chainIdFluent, chainIdMetamask, chainIdOKX]);
 
   useEffect(() => {
+    if (!activeProvider) {
+      if (statusMetamask === "active") {
+        setActiveProvider("metamask");
+      } else if (statusFluent === "active") {
+        setActiveProvider("fluent");
+      } else if (statusOKX === "active") {
+        setActiveProvider("okx");
+      }
+    }
+  }, [activeProvider, chainIdFluent, chainIdMetamask, chainIdOKX]);
+
+  useEffect(() => {
     // Fluent become inactive
     if (statusFluent === "not-active" && activeProvider === "fluent") {
       if (statusMetamask === "active") {

@@ -59,78 +59,84 @@ const ModalConnect: FC<ModalProps> = ({ isOpen, onClose, providers }) => {
   /**
    * Actions triggered when Metamask button is clicked
    */
-  const metamaskActions = () => {
-    if (statusMetamask === "active" && activeProvider !== "metamask") {
-      select("metamask");
-    }
-    if (statusMetamask !== "active") {
-      connectMetamask().then(() => {
-        // Wrong chainId connected
-        if (chainIdMetamask !== chainId.toString()) {
-          switchChainMetamask(`0x${chainId.toString(16)}`).then(() => {
-            select("metamask");
-          });
-        } else {
-          select("metamask");
-        }
-      });
-    }
-    if (statusMetamask === "active" && chainIdMetamask !== chainId.toString()) {
-      switchChainMetamask(`0x${chainId.toString(16)}`).then(() => {
+  const metamaskActions = async () => {
+    const isWrongNetwork = chainIdMetamask !== chainId.toString();
+
+    try {
+      if (
+        statusMetamask === "active" &&
+        activeProvider !== "metamask" &&
+        !isWrongNetwork
+      ) {
         select("metamask");
-      });
+      } else if (statusMetamask !== "active") {
+        await connectMetamask();
+        if (isWrongNetwork) {
+          await switchChainMetamask(`0x${chainId.toString(16)}`);
+        }
+        select("metamask");
+      } else if (statusMetamask === "active" && isWrongNetwork) {
+        await switchChainMetamask(`0x${chainId.toString(16)}`);
+        select("metamask");
+      }
+    } catch (error) {
+      toast(`An error occured : ${(error as any)?.message || ""}`);
     }
   };
 
   /**
    * Actions triggered when OKX button is clicked
    */
-  const okxActions = () => {
-    if (statusOKX === "active" && activeProvider !== "okx") {
-      select("okx");
-    }
-    if (statusOKX !== "active") {
-      connectOKX().then(() => {
-        // Wrong chainId connected
-        if (chainIdOKX !== chainId.toString()) {
-          switchChainOKX(`0x${chainId.toString(16)}`).then(() => {
-            select("okx");
-          });
-        } else {
-          select("okx");
-        }
-      });
-    }
-    if (statusOKX === "active" && chainIdOKX !== chainId.toString()) {
-      switchChainOKX(`0x${chainId.toString(16)}`).then(() => {
+  const okxActions = async () => {
+    const isWrongNetwork = chainIdOKX !== chainId.toString();
+    try {
+      if (
+        statusOKX === "active" &&
+        activeProvider !== "okx" &&
+        !isWrongNetwork
+      ) {
         select("okx");
-      });
+      } else if (statusOKX !== "active") {
+        await connectOKX();
+        // Wrong chainId connected
+        if (isWrongNetwork) {
+          await switchChainOKX(`0x${chainId.toString(16)}`);
+        }
+        select("okx");
+      } else if (statusOKX === "active" && isWrongNetwork) {
+        await switchChainOKX(`0x${chainId.toString(16)}`);
+        select("okx");
+      }
+    } catch (error) {
+      toast(`An error occured : ${JSON.stringify(error)}`);
     }
   };
 
   /**
    * Actions triggered when Fluent button is clicked
    */
-  const fluentActions = () => {
-    if (statusFluent === "active" && activeProvider !== "fluent") {
-      select("fluent");
-    }
-    if (statusFluent !== "active") {
-      connectFluent().then(() => {
-        // Wrong chainId connected
-        if (chainIdFluent !== chainId.toString()) {
-          switchChainFluent(`0x${chainId.toString(16)}`).then(() => {
-            select("fluent");
-          });
-        } else {
-          select("fluent");
-        }
-      });
-    }
-    if (statusFluent === "active" && chainIdFluent !== chainId.toString()) {
-      switchChainFluent(`0x${chainId.toString(16)}`).then(() => {
+  const fluentActions = async () => {
+    const isWrongNetwork = chainIdOKX !== chainId.toString();
+    try {
+      if (
+        statusFluent === "active" &&
+        activeProvider !== "fluent" &&
+        !isWrongNetwork
+      ) {
         select("fluent");
-      });
+      } else if (statusFluent !== "active") {
+        await connectFluent();
+        // Wrong chainId connected
+        if (isWrongNetwork) {
+          await switchChainFluent(`0x${chainId.toString(16)}`);
+        }
+        select("fluent");
+      } else if (statusFluent === "active" && isWrongNetwork) {
+        await switchChainFluent(`0x${chainId.toString(16)}`);
+        select("fluent");
+      }
+    } catch (error) {
+      toast(`An error occured : ${JSON.stringify(error)}`);
     }
   };
   /**
@@ -221,9 +227,9 @@ const ModalConnect: FC<ModalProps> = ({ isOpen, onClose, providers }) => {
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                   d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                  clip-rule="evenodd"
+                  clipRule="evenodd"
                 ></path>
               </svg>
               <span className="sr-only">Close modal</span>

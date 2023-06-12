@@ -20,9 +20,9 @@ const ProviderButton: React.FC<ProviderButtonProps> = ({
 
   const isWrongNetwork = globaleChainId.toString() !== chainId.toString();
 
-  let label = `Connect with ${text}`;
-  if (isWrongNetwork && status !== "not-installed") {
-    label = "Switch network";
+  let label = `Connect your ${text} wallet`;
+  if (isWrongNetwork && status === "active") {
+    label = "Wrong network connected, click to switch";
   } else {
     switch (status) {
       case "in-activating":
@@ -34,8 +34,6 @@ const ProviderButton: React.FC<ProviderButtonProps> = ({
       case "active":
         label = `Connected`;
         break;
-      case "not-active":
-        label = `Connect with ${text}`;
       default:
         break;
     }
@@ -45,10 +43,10 @@ const ProviderButton: React.FC<ProviderButtonProps> = ({
     <button
       type="button"
       className={classNames(
-        "border flex items-center relative justify-between transform transition duration-200 flex-col rounded p-4 flex",
+        "border flex items-center relative justify-between transform transition duration-200 flex-col rounded-xl p-4 flex",
         {
           "border-gray-900": theme === "dark",
-          "hover:scale-105 hover:shadow": !disabled,
+          "hover:scale-105 hover:shadow shadow-lg": !disabled,
           "opacity-60": disabled,
           "border-2 border-green-400": active && !isWrongNetwork,
           "border-2 border-orange-400": active && isWrongNetwork,
@@ -71,12 +69,25 @@ const ProviderButton: React.FC<ProviderButtonProps> = ({
           {isWrongNetwork ? "Wrong network" : "Active"}
         </div>
       )}
-      <div className="flex items-center w-20 h-20 mb-4">{icon}</div>
+      <div
+        className={classNames("flex items-center w-20 h-20 mb-4", {
+          " opacity-50": disabled,
+        })}
+      >
+        {icon}
+      </div>
       <span
-        className={classNames("text-sm ", {
-          "text-gray-400": disabled,
-          "text-white": theme === "dark" && !disabled,
-          "text-gray-700": theme === "light" && !disabled,
+        className={classNames("mt-2 font-bold", {
+          "text-gray-800": theme === "light",
+          "text-white": theme === "dark",
+        })}
+      >
+        {text}
+      </span>
+      <span
+        className={classNames("text-sm mt-2 ", {
+          "text-gray-500": theme === "dark" && !disabled,
+          "text-gray-400": theme === "light" && !disabled,
         })}
       >
         {label}

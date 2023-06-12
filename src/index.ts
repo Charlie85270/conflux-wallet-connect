@@ -1,9 +1,8 @@
-import "../tailwind.css";
 import "react-toastify/dist/ReactToastify.css";
 
 import * as MetamaskProvider from "@cfxjs/use-wallet-react/ethereum/MetaMask";
 import * as FluentProvider from "@cfxjs/use-wallet-react/ethereum/Fluent";
-import * as OKXProvider from "@cfxjs/use-wallet-react/ethereum/OKX";
+import * as OKXProvider from "@cfxjs/use-wallet-react/ethereum/OKX/index";
 
 import * as Toastify from "react-toastify";
 import { ModalConnect, ConfluxWalletButton } from "./components/index";

@@ -55,7 +55,7 @@ import {
   ConfluxWalletProvider,
   ConfluxWalletProviderConfiguration,
 } from "conflux-wallet-connect";
-import "...myCSStoUpdate.css";
+import "conflux-wallet-connect/lib/conflux-wallet-connect.css";
 
 const App = () => {
   const configuration: ConfluxWalletProviderConfiguration = {

@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 import { ConfluxWalletProvider, OKXProvider } from "../index";
 import { Toastify } from "../index";
 
 const meta = {
-  title: "Exemples/How to creare a 'Connect with OKX' button",
+  title: "Exemples/How to create a 'Connect with OKX' button",
   tags: ["autodocs"],
   parameters: {
     componentSubtitle:
