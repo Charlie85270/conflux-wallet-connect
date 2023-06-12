@@ -64,10 +64,45 @@ const App = () => {
 };
 ```
 
-You can modify the providers**configuration** to add or remove providers if needed.
-Supported providers : **fluent**, **metamask**, **okx**
-Supported chains : **1030** (Conflux EVM mainnet) / 71 (Conflux EVM testnet
+## Button / Modal components to connect user wallets
+
+After wrapping your application with the ConfluxWalletProvider as shown previously, you can use the `<ConfluxWalletButton />` on your app.
+This is a pre-styled and interactive button that allow user to connect to your dApps with OKX, Metamask or fluent wallet.
+
+More details and playground [here](?path=/docs/components-walletbutton--docs) :
+
+```jsx
+import { ConfluxWalletButton } from "conflux-wallet-connect";
+
+const MyComponent = () => {
+  const { openModal } = useConfluxWalletContext();
+
+  return <ConfluxWalletButton onClick={openModal} />;
+};
+```
+
+## Get active account informations
+
+After wrapping your application with the ConfluxWalletProvider as shown previously, you can use the hook `useConfluxWalletContext` from anywhere in your application and allow you to interact with the **active** user wallet.
+
+```jsx
+import {
+  useConfluxWalletContext,
+} from "conflux-wallet-connect";
+
+
+const MyComponent = () => {
+
+ const { wallet } = useConfluxWalletContext();
+ const { account, balance, chainId } = wallet;
+  return (
+    <p>
+      The balance of the account {account} on {chainId} is {balance} ...
+    <p>
+  );
+};
+```
 
 ## Documentation
 
-Find the full API references and playground on [Storybook](https://conflux-wallet-connect.netlify.app/)
+Find the full API reference on [official documentation](https://conflux-wallet-connect.netlify.app).
