@@ -1,19 +1,12 @@
-<a href="https://react-hot-toast.com/"><img alt="ConfluxWalletConnect" src="https://i.im.ge/2023/06/10/FMgm54.png"/></a>
 
-<div align="center">
-    <img src="https://badgen.net/npm/v/react-hot-toast" alt="NPM Version" />
-  <img src="https://badgen.net/bundlephobia/minzip/react-hot-toast" alt="minzipped size"/>
-    <img src="https://github.com/timolins/react-hot-toast/workflows/CI/badge.svg" alt="Build Status" />
-</a>
-</div>
+<img src="https://cryptocdn.fra1.cdn.digitaloceanspaces.com/sites/8/Screenshot-2022-04-28-10.57.38.png" />
 <br />
-<div align="center"><strong>Conflux Wallet Connect UI for React.</strong></div>
-<div align="center"> Easily integrate your dApps on Conflux eSpace with Fluent, Metamask, and OKX wallets.</div>
+<div align="center"><strong>Conflux Wallet Connect for React</strong></div>
+<div align="center">Easily integrate your react applications on the Conflux eSpace with Fluent, Metamask, and OKX wallets.</div>
 <br />
 <div align="center">
-<a href="https://react-hot-toast.com/">Website</a> 
-<span> · </span>
-<a href="https://react-hot-toast.com/docs">Documentation</a>
+
+<a href="https://conflux-wallet-connect.netlify.app">Website / Documentation</a>
 
 </div>
 
@@ -29,7 +22,6 @@
 - 🔥 **Pre-styled and ready to use Button and Modal components to connect wallets to your dApps**
 - 🔩 **Easily Customizable, plug your own components**
 - ⏳ **Unified API for Metamask, Fluent and OKX wallets**
-- 🕊 **Lightweight** - _less than 5kb including styles_
 - ✅ **Light and Dark mode supported**
 
 ## Installation
@@ -72,10 +64,45 @@ const App = () => {
 };
 ```
 
-You can modify the providers**configuration** to add or remove providers if needed.
-Supported providers : **fluent**, **metamask**, **okx**
-Supported chains : **1030** (Conflux EVM mainnet) / 71 (Conflux EVM testnet
+## Button / Modal components to connect user wallets
+
+After wrapping your application with the ConfluxWalletProvider as shown previously, you can use the `<ConfluxWalletButton />` on your app.
+This is a pre-styled and interactive button that allow user to connect to your dApps with OKX, Metamask or fluent wallet.
+
+More details and playground [here](?path=/docs/components-walletbutton--docs) :
+
+```jsx
+import { ConfluxWalletButton } from "conflux-wallet-connect";
+
+const MyComponent = () => {
+  const { openModal } = useConfluxWalletContext();
+
+  return <ConfluxWalletButton onClick={openModal} />;
+};
+```
+
+## Get active account informations
+
+After wrapping your application with the ConfluxWalletProvider as shown previously, you can use the hook `useConfluxWalletContext` from anywhere in your application and allow you to interact with the **active** user wallet.
+
+```jsx
+import {
+  useConfluxWalletContext,
+} from "conflux-wallet-connect";
+
+
+const MyComponent = () => {
+
+ const { wallet } = useConfluxWalletContext();
+ const { account, balance, chainId } = wallet;
+  return (
+    <p>
+      The balance of the account {account} on {chainId} is {balance} ...
+    <p>
+  );
+};
+```
 
 ## Documentation
 
-Find the full API reference on [official documentation](https://react-hot-toast.com/docs).
+Find the full API reference on [official documentation](https://conflux-wallet-connect.netlify.app).
