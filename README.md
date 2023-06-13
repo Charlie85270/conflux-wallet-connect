@@ -6,8 +6,9 @@
 <br />
 <div align="center">
 
-<a href="https://conflux-wallet-connect.netlify.app">Website / Documentation</a>
-
+<a href="https://conflux-wallet-connect.netlify.app">Website / Documentation</a> | 
+  <a href="https://conflux-wallet-connect-dapp-exemple.netlify.app/"> Live dApp exemple </a> |
+  <a href="https://github.com/Charlie85270/conflux-wallet-connect-dapp-exemple/"> Exemple source code</a>
 </div>
 
 <br />
