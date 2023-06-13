@@ -2252,10 +2252,10 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@cfxjs/use-wallet-react@^0.0.1-51":
-  version "0.0.1-51"
-  resolved "https://registry.yarnpkg.com/@cfxjs/use-wallet-react/-/use-wallet-react-0.0.1-51.tgz#3243f57390fffa8f05600e425d70bfdd55ae8c28"
-  integrity sha512-luPmFYRjE4ZMleACwL3C2si68cdvWYJ6nIHBFtAO3dCDypD2Jv3K5oV2tFyjZ4S905kz0jHp705ivXVIDq6tnw==
+"@cfxjs/use-wallet-react@^0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@cfxjs/use-wallet-react/-/use-wallet-react-0.0.1.tgz#794bae24d9992d6f5e0af6f13029da6932ac2e18"
+  integrity sha512-VFsIg3S8sDbdlpndmTV5CcRo4xADB81XRor5a9KZSaQVN/rIxqhE0N6eaC+V2hR8wfIU7R+YNlqFaTB6+rv2zQ==
   dependencies:
     decimal.js "^10.3.1"
     zustand "^4.3.6"
